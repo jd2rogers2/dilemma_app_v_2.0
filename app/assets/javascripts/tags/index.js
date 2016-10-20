@@ -15,5 +15,4 @@ function getAllTags(){
   })
 }
 $(document).ready(function(){
-  getAllTags();
 });
