@@ -22,7 +22,7 @@ class TagsController < ApplicationController
   def show
     set_tag
     respond_to do |format|
-      format.json {render json: @tag}
+      format.json {render json: @tag.to_json(include: :dilemmas)}
       format.html {render :show}
     end
   end
@@ -30,7 +30,7 @@ class TagsController < ApplicationController
   def index
     @tags = Tag.all
     respond_to do |format|
-      format.json {render json: @tags}
+      format.json {render json: @tags.to_json(include: :dilemmas)}
       format.html {render :index}
     end
   end
