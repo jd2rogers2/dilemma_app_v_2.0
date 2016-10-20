@@ -22,7 +22,7 @@ class TagsController < ApplicationController
   def show
     set_tag
     respond_to do |format|
-      format.json {render json: @tag.to_json(include: :dilemmas)}
+      format.json {render json: @tag.to_json(include: [dilemmas: {include: :tags}])}
       format.html {render :show}
     end
   end
