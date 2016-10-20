@@ -34,7 +34,7 @@ class DilemmasController < ApplicationController
   def index
     @dilemmas = Dilemma.all
     respond_to do |format|
-      format.json {render json: {dilemmas: @dilemmas}}
+      format.json {render json: @dilemmas}
       format.html {render :index}
     end
   end

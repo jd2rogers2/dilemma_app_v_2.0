@@ -21,10 +21,18 @@ class TagsController < ApplicationController
 
   def show
     set_tag
+    respond_to do |format|
+      format.json {render json: @tag}
+      format.html {render :show}
+    end
   end
 
   def index
     @tags = Tag.all
+    respond_to do |format|
+      format.json {render json: @tags}
+      format.html {render :index}
+    end
   end
 
   def destroy
