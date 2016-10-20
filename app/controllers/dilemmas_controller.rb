@@ -25,9 +25,18 @@ class DilemmasController < ApplicationController
     if @dilemma.author == current_user
       current_user.current_dilemma = current_user.dilemmas.find_by(id: params[:id])
     end
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @dilemma}
+    end
   end
 
   def index
+    @dilemmas = Dilemma.all
+    respond_to do |format|
+      format.json {render json: {dilemmas: @dilemmas}}
+      format.html {render :index}
+    end
   end
 
   def destroy
