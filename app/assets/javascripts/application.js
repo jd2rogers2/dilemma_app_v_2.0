@@ -13,7 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require tags/show
-//= require tags/index
-//= require dilemmas/show
-//= require dilemmas/index
+//= require_tree .

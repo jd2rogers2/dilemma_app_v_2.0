@@ -1,4 +1,5 @@
-function makeTagShowPage(num){
+function makeTagShowPage(){
+  var num = $('#tag_show_page').attr('data-id');
   $.get("/tags/"+ num + ".json", function(tag){
     var dilemmas = tag.dilemmas;
     var h3 = `<h3>${tag.name}</h3>`;
@@ -9,7 +10,7 @@ function makeTagShowPage(num){
       var tags_a_tags = "";
       for (var i = 0; i < dilemmas_tags.length; i++){
         var tag = dilemmas_tags[i];
-        tags_a_tags += `<a href="/tags/${tag.id}">${tag.name}</a>`;
+        tags_a_tags += `<a href="/tags/${tag.id}">${tag.name}</a> `;
       }
       rows += `<tr><td><a href="/dilemmas/${dilemmas[count].id}">${dilemmas[count].name}</a></td><td>${dilemmas[count].deadline}</td><td>${tags_a_tags}</td></tr>`;
     }
@@ -20,5 +21,5 @@ function makeTagShowPage(num){
 }
 
 $(document).ready(function(){
-  makeTagShowPage(@tag.id);
+  makeTagShowPage();
 });
