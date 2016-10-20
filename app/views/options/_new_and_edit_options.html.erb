@@ -1,0 +1,27 @@
+<%= render 'layouts/dilemma_header', {dilemma: current_user.current_dilemma} %>
+<p>tags: <%= render 'layouts/dilemma_tags', {dilemma: current_user.current_dilemma} %></p>
+
+<%= form_for [current_user.current_dilemma, option] do |o| %>
+  <%= o.label :name %>
+  <%= o.text_field :name %><br>
+  <br>
+  <%= o.label :factors %><br>
+  <% if option.id == nil %>
+    <% 5.times do %>
+      <%= o.fields_for :factors, Factor.new do |fact| %>
+        <%= fact.label :name %>
+        <%= fact.text_field :name %>
+        <%= fact.label :points %>
+        <%= fact.text_field :points %>
+      <% end %><br>
+    <% end %>
+  <% else %>
+    <%= o.fields_for :factors, option.factors do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.label :points %>
+      <%= f.text_field :points %><br>
+    <% end %><br>
+  <% end %>
+  <%= o.submit %>
+<% end %>

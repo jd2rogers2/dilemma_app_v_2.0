@@ -1,0 +1,15 @@
+<h3><%= @tag.name %></h3>
+
+<table>
+  <tr>
+    <th>dilemmas:</th>
+    <th>deadline</th>
+    <th>all tags</th>
+  </tr>
+  <% @tag.dilemmas.each do |d| %>
+    <%= render 'layouts/table', {d: d} %>
+  <% end %>
+</table>
+<br>
+
+<%= link_to "all tags", tags_path %>

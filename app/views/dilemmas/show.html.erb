@@ -1,0 +1,53 @@
+<%= render 'layouts/dilemma_header', {dilemma: @dilemma} %>
+<p>tags: <%= render 'layouts/dilemma_tags', {dilemma: @dilemma} %></p>
+
+<table>
+  <tr>
+    <th>options</th>
+    <th>total points</th>
+  </tr>
+  <% @dilemma.options.each do |opt| %>
+    <tr>
+      <td><%= "#{opt.name}"%></td>
+      <td><%= "#{opt.total_points}" %></td>
+      <td><%= link_to "view", dilemma_option_path(@dilemma, opt) %></td>
+      <td><%= link_to "delete", dilemma_option_path(@dilemma, opt), method: "delete" if author_check(@dilemma.author) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<% if author_check(@dilemma.author) %>
+  <%= link_to "add new option", new_dilemma_option_path(@dilemma) %>
+  <br>
+
+  <%= link_to "edit", edit_dilemma_path(current_user.current_dilemma) %> | <%= link_to "delete this dilemma", dilemma_path(@dilemma), method: "delete" %>
+<% end %>
+<br>
+<br>
+
+<table>
+  <tr>
+    <th>user</th>
+    <th>comment</th>
+  </tr>
+  <% @dilemma.comments.each do |c| %>
+    <tr>
+      <td><%= c.commenter.email %></td>
+      <td><%= c.content %></td>
+      <% if author_check(@dilemma.author) %>
+        <td><%= link_to "delete", comment_path(c), method: "delete" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  <tr>
+    <td></td>
+    <td>
+      <%= form_for @dilemma.comments.new do |com| %>
+        <%= com.hidden_field :dilemma_id, value: @dilemma.id %>
+        <%= com.hidden_field :commenter_id, value: current_user.id %>
+        <%= text_area :comment, :content, value: "add a new comment" %><br>
+        <%= com.submit %>
+      <% end %>
+    </td>
+  </tr>
+</table>

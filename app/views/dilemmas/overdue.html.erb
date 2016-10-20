@@ -1,0 +1,14 @@
+<% if current_user.overdue_dilemmas.first %>
+  <table>
+    <tr>
+      <th>dilemma</th>
+      <th>deadline</th>
+      <th>tags</th>
+    </tr>
+    <% current_user.overdue_dilemmas.each do |d| %>
+      <%= render 'layouts/table', {d: d} %>
+    <% end %>
+  </table>
+<% else %>
+  <p>you don't have any overdue dilemmas, good job</p>
+<% end %>

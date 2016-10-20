@@ -1,0 +1,13 @@
+<tr>
+  <td><%= link_to d.name, dilemma_path(d) %></td>
+  <td><%= d.pretty_deadline %></td>
+  <td>
+    <% d.tags.each do |t| %>
+      <%= link_to t.name, tag_path(t) %>
+    <% end %>
+  </td>
+  <% if author_check(d.author) %>
+    <td><%= link_to "view/edit", dilemma_path(d) %></td>
+    <td><%= link_to "delete", dilemma_path(d), method: "delete" %></td>
+  <% end %>
+</tr>

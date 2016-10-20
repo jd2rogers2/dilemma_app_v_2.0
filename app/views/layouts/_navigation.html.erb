@@ -1,0 +1,10 @@
+<% if user_signed_in? %>
+  <%= "Welcome, #{current_user.email}" %><br>
+  <%= link_to "home", dilemmas_path %> | 
+  <%= link_to "sign out", destroy_session_path(current_user), method: "delete" %>
+<% else %>
+  <%= link_to "home", root_path %> | 
+  <%= link_to "log in or sign up", new_user_registration_path %>
+<% end %>
+<br>
+

@@ -1,0 +1,33 @@
+table {
+  margin: auto;
+}
+
+body {
+  width: 75%;
+  margin: auto;
+  border-left: solid black 1px;
+  border-right: solid black 1px;
+  border-radius: 10px;
+}
+
+.nav {
+  background-color: #ccc;
+}
+
+.flash_messages {
+  background-color: #ccc;
+}
+
+#center {
+  text-align: center;
+}
+
+h1 {
+  font-family: Brush Script MT, cursive;
+  text-align: center;
+  font-size: 3em;
+}
+
+footer p {
+  text-align: center;
+}

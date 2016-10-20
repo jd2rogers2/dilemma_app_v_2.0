@@ -1,0 +1,29 @@
+<%= render 'layouts/dilemma_header', {dilemma: @option.dilemma} %>
+<p>tags: <%= render 'layouts/dilemma_tags', {dilemma: @option.dilemma} %></p>
+
+<h4><%= @option.name %></h4>
+
+<table>
+  <tr>
+    <th>factors</th>
+    <th>points</th>
+  </tr>
+  <% @option.factors.each do |fact| %>
+    <tr>
+      <td><%= fact.name %></td>
+      <td><%= fact.points %></td>
+      <% if author_check(@option.dilemma.author) %>
+        <td><%= link_to "delete", dilemma_option_factor_path(current_user.current_dilemma, @option, fact), method: "delete" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  <tr>
+    <th>total</th>
+    <th><%= @option.total_points %></th>
+  </tr>
+</table><br>
+
+<% if author_check(@option.dilemma.author) %>
+  <%= link_to "new factor", new_dilemma_option_factor_path(current_user.current_dilemma, @option, option_id: @option.id) %><br>
+  <%= link_to "edit", edit_dilemma_option_path(current_user.current_dilemma, @option) %> | <%= link_to "delete this option", dilemma_option_path(@option), method: "delete" %>
+<% end %>

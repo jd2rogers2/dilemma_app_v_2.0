@@ -1,0 +1,5 @@
+<ul style="text-align: center;">
+  <% flash.each do |key, msg| %>
+    <li style="color:red; list-style-type:none;"><%= msg if msg.class == String %></li>
+  <% end %>
+</ul>

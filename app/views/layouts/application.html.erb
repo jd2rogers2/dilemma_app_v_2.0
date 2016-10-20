@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DilemmaApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="nav">
+      <h1>can't make up your mind?</h1>
+      <%= render 'layouts/navigation' %><br>
+    </div> <!-- nav -->
+
+    <div id="center">
+      <%= yield %><br>
+    </div> <!-- center -->
+    <div class="flash_messages">
+      <%= render 'layouts/flash_messages' %>
+    <footer>
+      <p>by jd2rogers2 - copywrite 2016</p>
+    </footer>
+    </div> <!-- flash_messages -->
+  </body>
+</html>
