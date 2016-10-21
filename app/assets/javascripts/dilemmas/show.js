@@ -30,18 +30,21 @@ function getAndDisplayComments(){
 function addComment(){
   $('input#new_comment').click(function(event){
     event.preventDefault();
-    var dilemma_id = parseInt($('#comment_dilemma_id').attr('value'));
-    var commenter_id = parseInt($('#comment_commenter_id').attr('value'));
+    var dilemma_id = $('#comment_dilemma_id').attr('value');
+    var commenter_id = $('#comment_commenter_id').attr('value');
     var content = $('textarea').val();
     var new_comment = {"comment" : {"content" : content, "dilemma_id" : dilemma_id, "commenter_id" : commenter_id}};
     $.ajax({
       "url" : "/comments",
       "type" : "POST",
       "data" : new_comment,
-      "dataType" : "json",
+      "datatype" : "json",
       success : function(data) {
         debugger;
         // var commentObject = new Comment(data.id, data.content, data.commenter_id, data.dilemma_id)
+      }, 
+      error : function(data, error, message) {
+        debugger;
       }
     });
   });
