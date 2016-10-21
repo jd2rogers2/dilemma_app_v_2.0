@@ -33,16 +33,15 @@ function addComment(){
     var dilemma_id = parseInt($('#comment_dilemma_id').attr('value'));
     var commenter_id = parseInt($('#comment_commenter_id').attr('value'));
     var content = $('textarea').val();
-    var new_comment = {"comment" : {"content" : content, "dilemma_id" : dilemma_id, "commenter_id" : commenter_id}}
-    // var new_comment = new Comment(0, content, commenter_id, dilemma_id)
-    debugger;
+    var new_comment = {"comment" : {"content" : content, "dilemma_id" : dilemma_id, "commenter_id" : commenter_id}};
     $.ajax({
       "url" : "/comments",
       "type" : "POST",
       "data" : new_comment,
-      "data_type" : "json",
+      "dataType" : "json",
       success : function(data) {
         debugger;
+        // var commentObject = new Comment(data.id, data.content, data.commenter_id, data.dilemma_id)
       }
     });
   });
