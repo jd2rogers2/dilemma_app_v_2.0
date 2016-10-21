@@ -25,29 +25,33 @@
 <br>
 <br>
 
-<table>
-  <tr>
-    <th>user</th>
-    <th>comment</th>
-  </tr>
-  <% @dilemma.comments.each do |c| %>
+<div id="comment_table" data-id="<%= @dilemma.id %>">
+  <table>
     <tr>
-      <td><%= c.commenter.email %></td>
-      <td><%= c.content %></td>
-      <% if author_check(@dilemma.author) %>
-        <td><%= link_to "delete", comment_path(c), method: "delete" %></td>
-      <% end %>
+      <th>user</th>
+      <th>comment</th>
     </tr>
-  <% end %>
-  <tr>
-    <td></td>
-    <td>
-      <%= form_for @dilemma.comments.new do |com| %>
-        <%= com.hidden_field :dilemma_id, value: @dilemma.id %>
-        <%= com.hidden_field :commenter_id, value: current_user.id %>
-        <%= text_area :comment, :content, value: "add a new comment" %><br>
-        <%= com.submit %>
+    <div id="old_comments">
+      <% @dilemma.comments.each do |c| %>
+        <tr>
+          <td><%= c.commenter.email %></td>
+          <td><%= c.content %></td>
+          <% if author_check(@dilemma.author) %>
+            <td><%= link_to "delete", comment_path(c), method: "delete" %></td>
+          <% end %>
+        </tr>
       <% end %>
-    </td>
-  </tr>
-</table>
+    </div> <!-- old_comments -->
+    <tr>
+      <td></td>
+      <td>
+        <%= form_for @dilemma.comments.new do |com| %>
+          <%= com.hidden_field :dilemma_id, value: @dilemma.id %>
+          <%= com.hidden_field :commenter_id, value: current_user.id %>
+          <%= text_area :comment, :content, value: "add a new comment" %><br>
+          <%= com.submit %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</div>  <!-- comment_table -->

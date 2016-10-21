@@ -14,7 +14,7 @@ function makeTagShowPage(){
       }
       rows += `<tr><td><a href="/dilemmas/${dilemmas[count].id}">${dilemmas[count].name}</a></td><td>${dilemmas[count].deadline}</td><td>${tags_a_tags}</td></tr>`;
     }
-    var table = `<table><tbody><tr><th>dilemmas:</th><th>deadline</th><th>all tags</th></tr>${rows}</tbody></table>`;
+    var table = `<table><tbody><tr><th>dilemma</th><th>deadline</th><th>tags</th></tr>${rows}</tbody></table>`;
     var total = h3 + table;
     $('#tag_show_page').html(total);
   });
