@@ -1,3 +1,12 @@
+class Comment {
+  constructor(id, content, commenter_id, dilemma_id) {
+    this.id = id;
+    this.content = content;
+    this.commenter_id = commenter_id;
+    this.dilemma_id = dilemma_id;
+  }
+}
+
 function getAndDisplayComments(){
   var dilemma_id = $('#comment_table').attr('data-dilemma-id');
   var author_id = $('#comment_table').attr('data-author-id');
@@ -19,16 +28,21 @@ function getAndDisplayComments(){
 }
 
 function addComment(){
-  $('#new_comment').click(function(event){
+  $('input#new_comment').click(function(event){
     event.preventDefault();
-    var dilemma_id = $('#comment_dilemma_id').attr('value');
-    var commenter_id = $('#comment_commenter_id').attr('value');
+    var dilemma_id = parseInt($('#comment_dilemma_id').attr('value'));
+    var commenter_id = parseInt($('#comment_commenter_id').attr('value'));
     var content = $('textarea').val();
+    var new_comment = {"comment" : {"content" : content, "dilemma_id" : dilemma_id, "commenter_id" : commenter_id}}
+    // var new_comment = new Comment(0, content, commenter_id, dilemma_id)
+    debugger;
     $.ajax({
-      "url" : url,
+      "url" : "/comments",
       "type" : "POST",
-      success : function(data){
-        // x
+      "data" : new_comment,
+      "data_type" : "json",
+      success : function(data) {
+        debugger;
       }
     });
   });
