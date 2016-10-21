@@ -39,7 +39,7 @@
           <%= com.hidden_field :dilemma_id, value: @dilemma.id %>
           <%= com.hidden_field :commenter_id, value: current_user.id %>
           <%= text_area :comment, :content, value: "add a new comment" %><br>
-          <%= com.submit %>
+          <input type="submit" name="commit" value="Create Comment" data-disable-with="Create Comment" id="new_comment">
         <% end %>
       </td>
     </tr>

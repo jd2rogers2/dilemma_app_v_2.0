@@ -19,8 +19,21 @@ function getAndDisplayComments(){
 }
 
 function addComment(){
-  $('#')
+  $('#new_comment').click(function(event){
+    event.preventDefault();
+    var dilemma_id = $('#comment_dilemma_id').attr('value');
+    var commenter_id = $('#comment_commenter_id').attr('value');
+    var content = $('textarea').val();
+    $.ajax({
+      "url" : url,
+      "type" : "POST",
+      success : function(data){
+        // x
+      }
+    });
+  });
 }
 
 $(document).ready(function(){
+  addComment();
 });
