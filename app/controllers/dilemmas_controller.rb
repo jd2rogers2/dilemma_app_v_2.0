@@ -27,7 +27,7 @@ class DilemmasController < ApplicationController
     end
     respond_to do |format|
       format.html {render :show}
-      format.json {render json: @dilemma.to_json(include: [:tags, :comments, options: {include: :factors}])}
+      format.json {render json: @dilemma.to_json(include: [:tags, comments: {include: :commenter}, options: {include: :factors}])}
     end
   end
 

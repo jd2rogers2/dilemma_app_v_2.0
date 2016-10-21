@@ -25,23 +25,13 @@
 <br>
 <br>
 
-<div id="comment_table" data-id="<%= @dilemma.id %>">
+<div id="comment_table" data-dilemma-id="<%= @dilemma.id %>" data-author-id="<%= @dilemma.author.id %>" data-current-user-id="<%= current_user.id %>">
   <table>
-    <tr>
+    <tr id="comment_header_row">
       <th>user</th>
       <th>comment</th>
     </tr>
-    <div id="old_comments">
-      <% @dilemma.comments.each do |c| %>
-        <tr>
-          <td><%= c.commenter.email %></td>
-          <td><%= c.content %></td>
-          <% if author_check(@dilemma.author) %>
-            <td><%= link_to "delete", comment_path(c), method: "delete" %></td>
-          <% end %>
-        </tr>
-      <% end %>
-    </div> <!-- old_comments -->
+    <!-- js adds old comments here -->
     <tr>
       <td></td>
       <td>
@@ -55,3 +45,7 @@
     </tr>
   </table>
 </div>  <!-- comment_table -->
+
+<script type="text/javascript">
+  getAndDisplayComments();
+</script>

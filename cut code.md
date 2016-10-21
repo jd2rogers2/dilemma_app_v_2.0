@@ -23,3 +23,14 @@ cut from tag show page
       <%= render 'layouts/table', {d: d} %>
     <% end %>
   </table>
+
+cut from dilemma show page, replaced with old_comments div
+  <% @dilemma.comments.each do |c| %>
+    <tr>
+      <td><%= c.commenter.email %></td>
+      <td><%= c.content %></td>
+      <% if author_check(@dilemma.author) %>
+        <td><%= link_to "delete", comment_path(c), method: "delete" %></td>
+      <% end %>
+    </tr>
+  <% end %>
