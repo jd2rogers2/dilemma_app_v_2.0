@@ -9,7 +9,7 @@ class TagsController < ApplicationController
     # redirect_to tag_path(@tag)
     respond_to do |format|
       format.json {render json: @tag.to_json(include: [dilemmas: {include: :tags}])}
-      format.html {render :show}
+      # format.html {render :show}
     end
   end
 
