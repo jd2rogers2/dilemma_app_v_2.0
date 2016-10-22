@@ -45,9 +45,14 @@ function addComment(){
       }, 
       error : function(data, error, message) {
         debugger;
+        // alert(message);
       }
     });
   });
+}
+
+function showDilemma(){
+  $
 }
 
 $(document).ready(function(){

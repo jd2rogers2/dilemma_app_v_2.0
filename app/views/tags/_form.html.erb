@@ -1,5 +1,4 @@
 <%= form_for tag do |t| %>
-  <%= t.label :name %>
-  <%= t.text_field :name%>
+  <%= t.text_field :name, value: "new tag" %>
   <%= t.submit %>
 <% end %>
