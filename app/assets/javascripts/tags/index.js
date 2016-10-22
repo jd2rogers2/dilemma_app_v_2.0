@@ -9,8 +9,6 @@ function getAllTags(){
       }
       var total_new_html = `<tr><td>${tag.name}</td><td>${dilemmas_html}</td><td><a href="/tags/${tag.id}">view</a></td></tr>`;
       $('#link_row').before(total_new_html);
-      // loading weird, blinking like it's loading something else first
-      // also adding the tags a second time if you navigate back to the page
     }
   })
 }
@@ -37,5 +35,4 @@ function createNewTag(){
 }
 
 $(document).ready(function(){
-  createNewTag();
 });

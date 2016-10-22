@@ -30,6 +30,7 @@ function getAndDisplayComments(){
 function addComment(){
   $('input#new_comment').click(function(event){
     event.preventDefault();
+    var author_id = $('#comment_table').attr('data-author-id');
     var dilemma_id = $('#comment_dilemma_id').attr('value');
     var commenter_id = $('#comment_commenter_id').attr('value');
     var content = $('textarea').val();
@@ -40,14 +41,25 @@ function addComment(){
       "data" : new_comment,
       "datatype" : "json",
       success : function(data) {
-        debugger;
-        // var commentObject = new Comment(data.id, data.content, data.commenter_id, data.dilemma_id)
+        var comObj = new Comment(data.id, data.content, data.commenter_id, data.dilemma_id)
+        var comment_html = "<tr><td>" + data.commenter.email + "</td><td>" + data.content;
+        if (author_id === commenter_id) {
+          comment_html += " <a rel='nofollow' data-method='delete' href='/comments/" + author_id + "'>delete</a>"
+        }
+        comment_html += "</td></tr>";
+        $('#comment_create_row').before(comment_html)
       }, 
       error : function(data, error, message) {
-        debugger;
-        // alert(message);
+        alert(message);
       }
     });
+  });
+}
+
+function deleteComment(){
+  $('div#comment_table a').click(function(event){
+    event.preventDefault();
+    debugger;
   });
 }
 
@@ -57,4 +69,5 @@ function showDilemma(){
 
 $(document).ready(function(){
   addComment();
+  deleteComment();
 });
