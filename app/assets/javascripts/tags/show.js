@@ -23,35 +23,28 @@ class Dilemma {
     // }
   }
 
-  // this.prettyDeadline = function(){
-  //   this.deadline;
-  //   // need to build this out
-  // }
+  this.prettyDeadline = function(){
+    this.deadline;
+    // need to build this out
+  }
 }
 
 function makeTagShowPage(){
   var tag_id = $('#tag_show_page').attr('data-id');
   $.get("/tags/"+ tag_id + ".json", function(data){
     var tag = new Tag(data.id, data.name, data.dilemmas);
-    debugger;
-
-    // unrefactored code below still has tag as response data
-    var h3 = `<h3>${tag.name}</h3>`;
     var rows = "";
     for (var count = 0; count < tag.dilemmas.length; count++) {
-      var dilemma = tag.dilemmas[count];
-      var dilemmas_tags = dilemma.tags;
+      var dilemmas_tags = tag.dilemmas[count].tags;
       var tags_a_tags = "";
       for (var i = 0; i < dilemmas_tags.length; i++){
-        var tag = dilemmas_tags[i];
-        tags_a_tags += `<a href="/tags/${tag.id}">${tag.name}</a> `;
+        tags_a_tags += `<a href="/tags/${dilemmas_tags[i].id}">${dilemmas_tags[i].name}</a> `;
       }
-      debugger; // tag does not have dilemmas attr here?????
+      // tag does not have dilemmas attr here?????
       rows += `<tr><td><a href="/dilemmas/${tag.dilemmas[count].id}">${tag.dilemmas[count].name}</a></td><td>${tag.dilemmas[count].deadline}</td><td>${tags_a_tags}</td></tr>`;
     }
-    var table = `<table><tbody><tr><th>dilemma</th><th>deadline</th><th>tags</th></tr>${rows}</tbody></table>`;
-    var total = h3 + table;
-    $('#tag_show_page').html(total);
+    var html = `<h3>${tag.name}</h3><table><tbody><tr><th>dilemma</th><th>deadline</th><th>tags</th></tr>${rows}</tbody></table>`;
+    $('#tag_show_page').html(html);
   });
 }
 
