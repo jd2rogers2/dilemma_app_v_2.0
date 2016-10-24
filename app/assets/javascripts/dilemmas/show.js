@@ -9,6 +9,8 @@ class Comment {
 }
 
 Comment.allInstances = [];
+var author_id = $('#comment_table').attr('data-author-id');
+var current_user_id = $('#comment_table').attr('data-current-user-id');
 
 function getAndDisplayComments(){
   var dilemma_id = $('#comment_table').attr('data-dilemma-id');
@@ -25,8 +27,6 @@ function buildAllComments(comments){
 }
 
 function thisDilemmasCommentsHtml(this_dilemmas_id){
-  var author_id = $('#comment_table').attr('data-author-id');
-  var current_user_id = $('#comment_table').attr('data-current-user-id');
   var html = "";
   for (var count = 0; count < Comment.allInstances.length; count++){
     var comment = Comment.allInstances[count];
@@ -42,8 +42,6 @@ function thisDilemmasCommentsHtml(this_dilemmas_id){
 }
 
 function commentHtml(comment){
-  var author_id = $('#comment_table').attr('data-author-id');
-  var current_user_id = $('#comment_table').attr('data-current-user-id');
   var comment_html = "<tr><td>" + comment.commenter.email + "</td><td>" + comment.content;
   if (author_id === current_user_id) {
     comment_html += " <a rel='nofollow' data-method='delete' href='/comments/" + comment.id + "'>delete</a>"
@@ -54,7 +52,6 @@ function commentHtml(comment){
 function addComment(){
   $('input#new_comment').click(function(event){
     event.preventDefault();
-    var current_user_id = $('#comment_table').attr('data-current-user-id');
     var dilemma_id = $('#comment_dilemma_id').attr('value');
     var content = $('textarea').val();
     var new_comment = {"comment" : {"content" : content, "dilemma_id" : dilemma_id, "commenter_id" : current_user_id}};
