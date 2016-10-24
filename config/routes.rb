@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :dilemmas
   resources :tags
   resources :comments
+  resources :users
   # resources :options
   root to: 'welcome#home'
 
