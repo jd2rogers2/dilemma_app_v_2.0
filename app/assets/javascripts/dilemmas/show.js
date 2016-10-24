@@ -1,30 +1,35 @@
 class Comment {
-  constructor(id, content, commenter_id, dilemma_id) {
+  constructor(id, content, commenter, dilemma_id) {
     this.id = id;
     this.content = content;
-    this.commenter_id = commenter_id;
+    this.commenter = commenter;
     this.dilemma_id = dilemma_id;
   }
 }
 
+Comment.allInstances = [];
+
 function getAndDisplayComments(){
   var dilemma_id = $('#comment_table').attr('data-dilemma-id');
+  $.get("/dilemmas/" + dilemma_id + ".json", function(data){
+    $('#comment_header_row').after(buildComments(data.comments))
+  });
+}
+
+function buildComments(comments){
   var author_id = $('#comment_table').attr('data-author-id');
   var current_user_id = $('#comment_table').attr('data-current-user-id');
-  $.get("/dilemmas/" + dilemma_id + ".json", function(data){
-    var comments = data.comments;
-    var total = "";
-    for (var count = 0; count < comments.length; count++){
-      var content = comments[count].content;
-      var email = comments[count].commenter.email;
-      total += "<tr><td>" + email + "</td><td>" + content;
-      if (author_id === current_user_id) {
-        total += " <a rel='nofollow' data-method='delete' href='/comments/" + comments[count].id + "'>delete</a>"
-      }
-      total += "</td></tr>";
+  var html = "";
+  for (var count = 0; count < comments.length; count++){
+    var comment = new Comment(comments[count].id, comments[count].content, comments[count].commenter, comments[count].dilemma_id);
+    Comment.allInstances.push(comment)
+    html += "<tr><td>" + comment.commenter.email + "</td><td>" + comment.content;
+    if (author_id === current_user_id) {
+      html += " <a rel='nofollow' data-method='delete' href='/comments/" + comment.id + "'>delete</a>"
     }
-    $('#comment_header_row').after(total)
-  });
+    html += "</td></tr>";
+  }
+  return html;
 }
 
 function addComment(){
