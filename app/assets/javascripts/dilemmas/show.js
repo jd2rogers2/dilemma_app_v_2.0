@@ -9,8 +9,7 @@ class Comment {
 }
 
 Comment.allInstances = [];
-var author_id = $('#comment_table').attr('data-author-id');
-var current_user_id = $('#comment_table').attr('data-current-user-id');
+var current_user_id, author_id;
 
 function getAndDisplayComments(){
   var dilemma_id = $('#comment_table').attr('data-dilemma-id');
@@ -46,7 +45,7 @@ function commentHtml(comment){
   if (author_id === current_user_id) {
     comment_html += " <a rel='nofollow' data-method='delete' href='/comments/" + comment.id + "'>delete</a>"
   }
-  comment_html += "</td></tr>";
+  return comment_html += "</td></tr>";
 }
 
 function addComment(){
@@ -60,6 +59,7 @@ function addComment(){
       "type" : "POST",
       "data" : new_comment,
       "dataType" : "json",
+      // randomly switching back and forth from dataType to datatype
       success : function(data) {
         var comObj = new Comment(data.id, data.content, data.commenter, data.dilemma_id)
         $('#comment_create_row').before(commentHtml(comObj))
@@ -84,5 +84,7 @@ function showDilemma(){
 
 $(document).ready(function(){
   addComment();
+  author_id = $('#comment_table').attr('data-author-id');
+  current_user_id = $('#comment_table').attr('data-current-user-id');
   // deleteComment();
 });
