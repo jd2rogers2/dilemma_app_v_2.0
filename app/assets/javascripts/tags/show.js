@@ -29,13 +29,17 @@ class Dilemma {
   }
 }
 
-function makeTagShowPage(){
+function makeMainTagInstance(){
   var tag_id = $('#tag_show_page').attr('data-id');
   $.get("/tags/"+ tag_id + ".json", function(data){
     var tag = new Tag(data.id, data.name, data.dilemmas);
-    var html = `<h3>${tag.name}</h3><table><tbody><tr><th>dilemma</th><th>deadline</th><th>tags</th></tr>${makeRows(tag.dilemmas)}</tbody></table>`;
-    $('#tag_show_page').html(html);
+    makeTagShowPage(tag);
   });
+}
+
+function makeTagShowPage(tag){
+  var html = `<h3>${tag.name}</h3><table><tbody><tr><th>dilemma</th><th>deadline</th><th>tags</th></tr>${makeRows(tag.dilemmas)}</tbody></table>`;
+  $('#tag_show_page').html(html);
 }
 
 function makeRows(dilemmas){
