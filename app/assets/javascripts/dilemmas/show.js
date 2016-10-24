@@ -13,18 +13,27 @@ Comment.allInstances = [];
 function getAndDisplayComments(){
   var dilemma_id = $('#comment_table').attr('data-dilemma-id');
   $.get("/dilemmas/" + dilemma_id + ".json", function(data){
-    $('#comment_header_row').after(buildComments(data.comments))
+    buildDilemmasComments(data.comments, data.id);
+    $('#comment_header_row').after(commentsHtml());
   });
 }
 
-function buildComments(comments){
-  var author_id = $('#comment_table').attr('data-author-id');
-  var html = "";
+function buildDilemmasComments(comments, this_dilemmas_id){
   for (var count = 0; count < comments.length; count++){
-    var comment = new Comment(comments[count].id, comments[count].content, comments[count].commenter, comments[count].dilemma_id);
-    // Comment.allInstances.push(comment)
+    if (comments[count].dilemma_id === this_dilemmas_id){
+      var comment = new Comment(comments[count].id, comments[count].content, comments[count].commenter, comments[count].dilemma_id);
+    }
+  }
+}
+
+function commentsHtml(){
+  var author_id = $('#comment_table').attr('data-author-id');
+  var current_user_id = $('#comment_table').attr('data-current-user-id');
+  var html = "";
+  for (var count = 0; count < Comment.allInstances.length; count++){
+    var comment = Comment.allInstances[count]
     html += "<tr><td>" + comment.commenter.email + "</td><td>" + comment.content;
-    if (author_id == comment.commenter.id) {
+    if (author_id === current_user_id) {
       html += " <a rel='nofollow' data-method='delete' href='/comments/" + comment.id + "'>delete</a>"
     }
     html += "</td></tr>";
@@ -33,9 +42,10 @@ function buildComments(comments){
 }
 
 function addComment(){
+  var author_id = $('#comment_table').attr('data-author-id');
+  var current_user_id = $('#comment_table').attr('data-current-user-id');
   $('input#new_comment').click(function(event){
     event.preventDefault();
-    var author_id = $('#comment_table').attr('data-author-id');
     var dilemma_id = $('#comment_dilemma_id').attr('value');
     var commenter_id = $('#comment_commenter_id').attr('value');
     var content = $('textarea').val();
@@ -47,10 +57,9 @@ function addComment(){
       "datatype" : "json",
       success : function(data) {
         var comObj = new Comment(data.id, data.content, data.commenter, data.dilemma_id)
-        // Comment.allInstances.push(comObj);
         var comment_html = "<tr><td>" + data.commenter.email + "</td><td>" + data.content;
-        if (author_id === comObj.commenter.id) {
-          comment_html += " <a rel='nofollow' data-method='delete' href='/comments/" + author_id + "'>delete</a>"
+        if (author_id === current_user_id) {
+          comment_html += " <a rel='nofollow' data-method='delete' href='/comments/" + comObj.id + "'>delete</a>"
         }
         comment_html += "</td></tr>";
         $('#comment_create_row').before(comment_html)
