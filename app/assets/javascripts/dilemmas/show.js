@@ -4,6 +4,7 @@ class Comment {
     this.content = content;
     this.commenter = commenter;
     this.dilemma_id = dilemma_id;
+    Comment.allInstances.push(this);
   }
 }
 
@@ -18,13 +19,12 @@ function getAndDisplayComments(){
 
 function buildComments(comments){
   var author_id = $('#comment_table').attr('data-author-id');
-  var current_user_id = $('#comment_table').attr('data-current-user-id');
   var html = "";
   for (var count = 0; count < comments.length; count++){
     var comment = new Comment(comments[count].id, comments[count].content, comments[count].commenter, comments[count].dilemma_id);
-    Comment.allInstances.push(comment)
+    // Comment.allInstances.push(comment)
     html += "<tr><td>" + comment.commenter.email + "</td><td>" + comment.content;
-    if (author_id === current_user_id) {
+    if (author_id == comment.commenter.id) {
       html += " <a rel='nofollow' data-method='delete' href='/comments/" + comment.id + "'>delete</a>"
     }
     html += "</td></tr>";
@@ -46,9 +46,10 @@ function addComment(){
       "data" : new_comment,
       "datatype" : "json",
       success : function(data) {
-        var comObj = new Comment(data.id, data.content, data.commenter_id, data.dilemma_id)
+        var comObj = new Comment(data.id, data.content, data.commenter, data.dilemma_id)
+        // Comment.allInstances.push(comObj);
         var comment_html = "<tr><td>" + data.commenter.email + "</td><td>" + data.content;
-        if (author_id === commenter_id) {
+        if (author_id === comObj.commenter.id) {
           comment_html += " <a rel='nofollow' data-method='delete' href='/comments/" + author_id + "'>delete</a>"
         }
         comment_html += "</td></tr>";

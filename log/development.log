@@ -30720,3 +30720,167 @@ Processing by DilemmasController#show as JSON
 Completed 200 OK in 49ms (Views: 0.2ms | ActiveRecord: 2.0ms)
 
 
+Started GET "/dilemmas/5" for ::1 at 2016-10-24 10:34:02 -0400
+Processing by DilemmasController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.2ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = ? LIMIT ?[0m  [["author_id", 4], ["id", 5], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.2ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = 5 LIMIT ?[0m  [["author_id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  Rendering dilemmas/show.html.erb within layouts/application
+  Rendered layouts/_dilemma_header.html.erb (2.3ms)
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "dilemma_tags" ON "tags"."id" = "dilemma_tags"."tag_id" WHERE "dilemma_tags"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  Rendered layouts/_dilemma_tags.html.erb (5.3ms)
+  [1m[36mOption Load (0.2ms)[0m  [1m[34mSELECT "options".* FROM "options" WHERE "options"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  [1m[36mFactor Load (0.4ms)[0m  [1m[34mSELECT "factors".* FROM "factors" WHERE "factors"."option_id" = ?[0m  [["option_id", 23]]
+  [1m[36mFactor Load (0.2ms)[0m  [1m[34mSELECT "factors".* FROM "factors" WHERE "factors"."option_id" = ?[0m  [["option_id", 29]]
+  [1m[36mDilemma Load (0.2ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = ? LIMIT ?[0m  [["author_id", 4], ["id", 5], ["LIMIT", 1]]
+  Rendered dilemmas/show.html.erb within layouts/application (33.1ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_flash_messages.html.erb (0.9ms)
+Completed 200 OK in 282ms (Views: 258.1ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/dilemmas/5.json" for ::1 at 2016-10-24 10:34:03 -0400
+Processing by DilemmasController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.2ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = ? LIMIT ?[0m  [["author_id", 4], ["id", 5], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = 5 LIMIT ?[0m  [["author_id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "dilemma_tags" ON "tags"."id" = "dilemma_tags"."tag_id" WHERE "dilemma_tags"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  [1m[36mComment Load (2.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+Completed 200 OK in 49ms (Views: 0.3ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/dilemmas/5" for ::1 at 2016-10-24 10:34:27 -0400
+Processing by DilemmasController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.1ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = ? LIMIT ?[0m  [["author_id", 4], ["id", 5], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = 5 LIMIT ?[0m  [["author_id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  Rendering dilemmas/show.html.erb within layouts/application
+  Rendered layouts/_dilemma_header.html.erb (1.1ms)
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "dilemma_tags" ON "tags"."id" = "dilemma_tags"."tag_id" WHERE "dilemma_tags"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  Rendered layouts/_dilemma_tags.html.erb (4.6ms)
+  [1m[36mOption Load (0.2ms)[0m  [1m[34mSELECT "options".* FROM "options" WHERE "options"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  [1m[36mFactor Load (0.3ms)[0m  [1m[34mSELECT "factors".* FROM "factors" WHERE "factors"."option_id" = ?[0m  [["option_id", 23]]
+  [1m[36mFactor Load (0.2ms)[0m  [1m[34mSELECT "factors".* FROM "factors" WHERE "factors"."option_id" = ?[0m  [["option_id", 29]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = ? LIMIT ?[0m  [["author_id", 4], ["id", 5], ["LIMIT", 1]]
+  Rendered dilemmas/show.html.erb within layouts/application (52.7ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_flash_messages.html.erb (0.9ms)
+Completed 200 OK in 324ms (Views: 309.3ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/dilemmas/5.json" for ::1 at 2016-10-24 10:34:28 -0400
+Processing by DilemmasController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.2ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = ? LIMIT ?[0m  [["author_id", 4], ["id", 5], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = 5 LIMIT ?[0m  [["author_id", 4], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "dilemma_tags" ON "tags"."id" = "dilemma_tags"."tag_id" WHERE "dilemma_tags"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+Completed 200 OK in 49ms (Views: 0.3ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/dilemmas/5" for ::1 at 2016-10-24 10:35:03 -0400
+Processing by DilemmasController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.2ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.4ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = ? LIMIT ?[0m  [["author_id", 4], ["id", 5], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = 5 LIMIT ?[0m  [["author_id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  Rendering dilemmas/show.html.erb within layouts/application
+  Rendered layouts/_dilemma_header.html.erb (1.5ms)
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "dilemma_tags" ON "tags"."id" = "dilemma_tags"."tag_id" WHERE "dilemma_tags"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  Rendered layouts/_dilemma_tags.html.erb (4.4ms)
+  [1m[36mOption Load (0.2ms)[0m  [1m[34mSELECT "options".* FROM "options" WHERE "options"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  [1m[36mFactor Load (0.2ms)[0m  [1m[34mSELECT "factors".* FROM "factors" WHERE "factors"."option_id" = ?[0m  [["option_id", 23]]
+  [1m[36mFactor Load (0.2ms)[0m  [1m[34mSELECT "factors".* FROM "factors" WHERE "factors"."option_id" = ?[0m  [["option_id", 29]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = ? LIMIT ?[0m  [["author_id", 4], ["id", 5], ["LIMIT", 1]]
+  Rendered dilemmas/show.html.erb within layouts/application (32.5ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_flash_messages.html.erb (0.8ms)
+Completed 200 OK in 329ms (Views: 291.9ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/dilemmas/5.json" for ::1 at 2016-10-24 10:35:03 -0400
+Processing by DilemmasController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.2ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = ? LIMIT ?[0m  [["author_id", 4], ["id", 5], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = 5 LIMIT ?[0m  [["author_id", 4], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "dilemma_tags" ON "tags"."id" = "dilemma_tags"."tag_id" WHERE "dilemma_tags"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+Completed 200 OK in 44ms (Views: 0.5ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/dilemmas/5" for ::1 at 2016-10-24 10:37:46 -0400
+Processing by DilemmasController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.2ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.4ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = ? LIMIT ?[0m  [["author_id", 4], ["id", 5], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = 5 LIMIT ?[0m  [["author_id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  Rendering dilemmas/show.html.erb within layouts/application
+  Rendered layouts/_dilemma_header.html.erb (1.0ms)
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "dilemma_tags" ON "tags"."id" = "dilemma_tags"."tag_id" WHERE "dilemma_tags"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  Rendered layouts/_dilemma_tags.html.erb (3.5ms)
+  [1m[36mOption Load (0.1ms)[0m  [1m[34mSELECT "options".* FROM "options" WHERE "options"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  [1m[36mFactor Load (0.5ms)[0m  [1m[34mSELECT "factors".* FROM "factors" WHERE "factors"."option_id" = ?[0m  [["option_id", 23]]
+  [1m[36mFactor Load (0.2ms)[0m  [1m[34mSELECT "factors".* FROM "factors" WHERE "factors"."option_id" = ?[0m  [["option_id", 29]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = ? LIMIT ?[0m  [["author_id", 4], ["id", 5], ["LIMIT", 1]]
+  Rendered dilemmas/show.html.erb within layouts/application (28.6ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_flash_messages.html.erb (0.7ms)
+Completed 200 OK in 297ms (Views: 274.9ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/dilemmas/5.json" for ::1 at 2016-10-24 10:37:47 -0400
+Processing by DilemmasController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = ? LIMIT ?[0m  [["author_id", 4], ["id", 5], ["LIMIT", 1]]
+  [1m[36mDilemma Load (0.3ms)[0m  [1m[34mSELECT  "dilemmas".* FROM "dilemmas" WHERE "dilemmas"."author_id" = ? AND "dilemmas"."id" = 5 LIMIT ?[0m  [["author_id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "dilemma_tags" ON "tags"."id" = "dilemma_tags"."tag_id" WHERE "dilemma_tags"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."dilemma_id" = ?[0m  [["dilemma_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+Completed 200 OK in 197ms (Views: 0.3ms | ActiveRecord: 2.1ms)
+
+

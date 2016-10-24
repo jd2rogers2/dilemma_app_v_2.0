@@ -7,6 +7,7 @@ class Tag {
       var new_dilemma = new Dilemma(new_dilemmas[i].id, new_dilemmas[i].name, new_dilemmas[i].deadline, new_dilemmas[i].author_id, new_dilemmas[i].tags);
       this.dilemmas.push(new_dilemma);
     }
+    Tag.allInstances.push(this);
   }
 }
 
@@ -21,6 +22,7 @@ class Dilemma {
     //   var new_tag = new Tag(new_tags[i].id, new_tags[i].name);
     //   this.tags.push(new_tag);
     // }
+    Dilemma.allInstances.push(this);
   }
 
   prettyDeadline(){
@@ -28,6 +30,9 @@ class Dilemma {
     return date.toDateString();
   }
 }
+
+Tag.allInstances = [];
+Dilemma.allInstances = [];
 
 function makeMainTagInstance(){
   var tag_id = $('#tag_show_page').attr('data-id');
