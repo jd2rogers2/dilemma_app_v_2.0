@@ -58,7 +58,7 @@ function addComment(){
       "url" : "/comments",
       "type" : "POST",
       "data" : new_comment,
-      "datatype" : "json",
+      "dataType" : "json",
       // randomly switching back and forth from dataType to datatype
       success : function(data) {
         var comObj = new Comment(data.id, data.content, data.commenter, data.dilemma_id)
@@ -71,20 +71,8 @@ function addComment(){
   });
 }
 
-function deleteComment(){
-  $('div#comment_table a').click(function(event){
-    event.preventDefault();
-    debugger;
-  });
-}
-
-function showDilemma(){
-  $
-}
-
 $(document).ready(function(){
   addComment();
   author_id = $('#comment_table').attr('data-author-id');
   current_user_id = $('#comment_table').attr('data-current-user-id');
-  // deleteComment();
 });
