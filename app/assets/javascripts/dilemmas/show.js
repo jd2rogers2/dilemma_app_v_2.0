@@ -58,7 +58,7 @@ function addComment(){
       "url" : "/comments",
       "type" : "POST",
       "data" : new_comment,
-      "dataType" : "json",
+      "datatype" : "json",
       // randomly switching back and forth from dataType to datatype
       success : function(data) {
         var comObj = new Comment(data.id, data.content, data.commenter, data.dilemma_id)
