@@ -4,9 +4,8 @@
     <th>deadline</th>
     <th>tags</th>
   </tr>
-  <% current_user.dilemmas.each do |d| %>
-    <%= render 'layouts/table', {d: d} %>
-  <% end %>
+  <div id="dilemmas_index" data-current-user-id="<%= current_user.id %>">
+  </div>
   <tr>
     <td><%= link_to "add new dilemma", new_dilemma_path %></td>
     <td><%= link_to "see your overdue dilemmas", overdue_path %></td>
@@ -14,4 +13,8 @@
   </tr>
 </table>
 
+<script type="text/javascript">
+  getUser();
+  getUsersDilemmas();
+</script>
 
