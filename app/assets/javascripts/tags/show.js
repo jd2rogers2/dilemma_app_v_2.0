@@ -11,28 +11,7 @@ class Tag {
   }
 }
 
-class Dilemma {
-  constructor(id, name, deadline, author_id, new_tags){
-    this.id = id;
-    this.name = name;
-    this.deadline = deadline;
-    this.author_id = author_id;
-    this.tags = new_tags;
-    // for (var i = 0; i < new_tags.length; i++){
-    //   var new_tag = new Tag(new_tags[i].id, new_tags[i].name);
-    //   this.tags.push(new_tag);
-    // }
-    Dilemma.allInstances.push(this);
-  }
-
-  prettyDeadline(){
-    var date = new Date(this.deadline);
-    return date.toDateString();
-  }
-}
-
 Tag.allInstances = [];
-Dilemma.allInstances = [];
 
 function makeMainTagInstance(){
   var tag_id = $('#tag_show_page').attr('data-id');

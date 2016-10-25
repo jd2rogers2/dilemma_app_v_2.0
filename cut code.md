@@ -1,3 +1,8 @@
+cut from dilemmas index
+  <% current_user.dilemmas.each do |d| %>
+    <%= render 'layouts/table', {d: d} %>
+  <% end %>
+
 cut from tags index
   <% @tags.each do |t| %>
     <tr>
