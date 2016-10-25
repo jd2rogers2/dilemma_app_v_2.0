@@ -21,32 +21,28 @@ Dilemma.allInstances = [];
 
 function getUsersDilemmas(){
   $.get("/dilemmas.json", function(data){
-    var html ="";
-    for (var i = 0; i < data.length; i++){
-      if (data[i].author_id == getUser()){
-        html += "<tr><td><a href='/dilemmas/" + data[i].id + "'>" + data[i].name + "</a></td><td></td>"
-        debugger;
-      }
-    }
+    $('#dilemma_index_header_row').after(dilemmaIndexDataToHtml(data));
   });
 }
 
-function getUser(){
-  return $('#dilemmas_index').attr('data-current-user-id');
+function dilemmaIndexDataToHtml(data){
+  var html = ""
+  for (var i = 0; i < data.length; i++){
+    if (data[i].author_id == getUser()){
+      var dilemma = new Dilemma(data[i].id, data[i].name, data[i].deadline, data[i].author_id, data[i].tags);
+      html += "<tr><td><a href='/dilemmas/" + dilemma.id + "'>" + dilemma.name + "</a></td><td>" + dilemma.prettyDeadline() + "</td><td>";
+      for (count = 0; count < dilemma.tags.length; count++){
+        html += "<a href='/tags/" + dilemma.tags[count].id + "'>" + dilemma.tags[count].name + "</a> "
+      }
+      html += "</td><td><a rel='nofollow' data-method='delete' href='/dilemmas/" + dilemma.id + "'>delete</a></td>"
+    }
+  }
+  return html;
 }
 
-// <tr>
-//   <td><%= link_to d.name, dilemma_path(d) %></td>
-//   <td><%= d.pretty_deadline %></td>
-//   <td>
-//     <% d.tags.each do |t| %>
-//       <%= link_to t.name, tag_path(t) %>
-//     <% end %>
-//   </td>
-//   <% if author_check(d.author) %>
-//     <td><%= link_to "delete", dilemma_path(d), method: "delete" %></td>
-//   <% end %>
-// </tr>
+function getUser(){
+  return $('#dilemma_index_header_row').attr('data-current-user-id');
+}
 
 $(document).ready(function(){
 });
