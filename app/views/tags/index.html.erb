@@ -13,3 +13,15 @@
   getAllTags();
   createNewTag();
 </script>
+
+<script type="text/x-handlebars-template" id="tag-index-template">
+  <tr>
+    <td>{{tag_name}}</td>
+      <td>
+        {{#each dilemma_array}}
+          <a href="/dilemmas/{{dilemma_id}}">{{dilemma_name}}</a>
+        {{/each}}
+      </td>
+    <td><a href="/tags/{{tag_id}}">view</a></td>
+  </tr>
+</script>

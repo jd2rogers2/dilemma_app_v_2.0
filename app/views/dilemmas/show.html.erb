@@ -57,8 +57,8 @@
   <tr>
     <td>{{email}}</td>
     <td>{{content}}</td>
-    if ({{id}}) {
-      <td><a rel='nofollow' data-method='delete' href="/comments/".concat({{id}})>delete</a></td>
-    }
+    {{#if boolean}}
+      <td><a rel='nofollow' data-method='delete' href="/comments/{{id}}">delete</a></td>
+    {{/if}}
   </tr>
 </script>

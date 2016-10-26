@@ -9,7 +9,6 @@ class Comment {
 }
 
 Comment.allInstances = [];
-var current_user_id, author_id;
 
 function getAndDisplayComments(){
   var dilemma_id = $('#comment_table').attr('data-dilemma-id');
@@ -25,28 +24,25 @@ function buildAllComments(comments){
   }
 }
 
+function authorCheck(commenter_id){
+  var author_id = $('#comment_table').attr('data-author-id');
+  var current_user_id = $('#comment_table').attr('data-current-user-id');
+  if (author_id === current_user_id || current_user_id == commenter_id){
+    return current_user_id;
+  } else {
+    return false;
+  }
+}
+
 function thisDilemmasCommentsHtml(this_dilemmas_id){
   for (var count = 0; count < Comment.allInstances.length; count++){
     var comment = Comment.allInstances[count];
     if (comment.dilemma_id == this_dilemmas_id){
-      var this_id = false;
-      debugger;
-      if (author_id === current_user_id) {
-        this_id = comment.id;
-      }
       var template = Handlebars.compile($("#comment-template").html());
-      var html = template({email: comment.commenter.email, content: comment.content, id: this_id});
-      $('#comment_header_row').after(html);
+      var html = template({email: comment.commenter.email, content: comment.content, id: comment.id, boolean: authorCheck(comment.commenter.id)});
+      $('#comment_create_row').before(html);
     }
   }
-}
-
-function commentHtml(comment){
-  var comment_html = "<tr><td>" + comment.commenter.email + "</td><td>" + comment.content;
-  if (author_id === current_user_id) {
-    comment_html += " <a rel='nofollow' data-method='delete' href='/comments/" + comment.id + "'>delete</a>"
-  }
-  return comment_html += "</td></tr>";
 }
 
 function addComment(){
@@ -54,6 +50,7 @@ function addComment(){
     event.preventDefault();
     var dilemma_id = $('#comment_dilemma_id').attr('value');
     var content = $('textarea').val();
+    var current_user_id = $('#comment_table').attr('data-current-user-id');
     var new_comment = {"comment" : {"content" : content, "dilemma_id" : dilemma_id, "commenter_id" : current_user_id}};
     $.ajax({
       "url" : "/comments",
@@ -63,9 +60,8 @@ function addComment(){
       // randomly switching back and forth from dataType to datatype
       success : function(data) {
         var comObj = new Comment(data.id, data.content, data.commenter, data.dilemma_id);
-        // $('#comment_create_row').before(commentHtml(comObj))
         var template = Handlebars.compile($("#comment-template").html());
-        var html = template({email: comObj.commenter.email, content: comObj.content});
+        var html = template({email: comObj.commenter.email, content: comObj.content, id: comObj.id, boolean: authorCheck(comObj.commenter.id)});
         $('#comment_create_row').before(html);
       }, 
       error : function(data, error, message) {
@@ -77,6 +73,4 @@ function addComment(){
 
 $(document).ready(function(){
   addComment();
-  author_id = $('#comment_table').attr('data-author-id');
-  current_user_id = $('#comment_table').attr('data-current-user-id');
 });

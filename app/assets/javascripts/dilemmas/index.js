@@ -26,18 +26,19 @@ function getUsersDilemmas(){
 }
 
 function dilemmaIndexDataToHtml(data){
-  var html = ""
+  var template = Handlebars.compile($('#dilemma-index-template').html());
+  var context;
   for (var i = 0; i < data.length; i++){
     if (data[i].author_id == getUser()){
       var dilemma = new Dilemma(data[i].id, data[i].name, data[i].deadline, data[i].author_id, data[i].tags);
-      html += "<tr><td><a href='/dilemmas/" + dilemma.id + "'>" + dilemma.name + "</a></td><td>" + dilemma.prettyDeadline() + "</td><td>";
+      context = {dilemma_name: dilemma.name, dilemma_id: dilemma.id, dilemma_deadline: dilemma.prettyDeadline(), tags: []}
       for (count = 0; count < dilemma.tags.length; count++){
-        html += "<a href='/tags/" + dilemma.tags[count].id + "'>" + dilemma.tags[count].name + "</a> "
+        context.tags.push({tag_id: dilemma.tags[count].id, tag_name: dilemma.tags[count].name})
       }
-      html += "</td><td><a rel='nofollow' data-method='delete' href='/dilemmas/" + dilemma.id + "'>delete</a></td>"
     }
   }
-  return html;
+  debugger;
+  return template(context);
 }
 
 function getUser(){

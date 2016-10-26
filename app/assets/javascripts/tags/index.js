@@ -2,11 +2,12 @@ function getAllTags(){
   $.get("/tags.json", function(data){
     for (var count = 0; count < data.length; count ++) {
       var tag = new Tag(data[count].id, data[count].name, data[count].dilemmas);
-      var dilemma_a_tags = "";
+      var context = {tag_name: tag.name, tag_id: tag.id, dilemma_array: []}
       for (var i = 0; i < tag.dilemmas.length; i++){
-        dilemma_a_tags += `<a href="/dilemmas/${tag.dilemmas[i].id}">${tag.dilemmas[i].name}</a> `;
+        context.dilemma_array.push({dilemma_id: tag.dilemmas[i].id, dilemma_name: tag.dilemmas[i].name});
       }
-      var html = `<tr><td>${tag.name}</td><td>${dilemma_a_tags}</td><td><a href="/tags/${tag.id}">view</a></td></tr>`;
+      var template = Handlebars.compile($('#tag-index-template').html());
+      var html = template(context)
       $('#link_row').before(html);
     }
   })
@@ -23,7 +24,9 @@ function createNewTag(){
       "datatype" : "json",
       "data" : new_tag,
       success : function(data){
-        var new_html = "<tr><td>" + data.name + "</td><td></td><</tr>"
+        var template = Handlebars.compile($('#tag-index-template').html());
+        var context = {tag_id: data.id, tag_name: data.name}
+        var new_html = template(context);
         $('#link_row').before(new_html);
       },
       error : function(data, error, message){

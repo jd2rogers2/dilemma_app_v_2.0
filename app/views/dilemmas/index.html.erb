@@ -17,3 +17,18 @@
   getUsersDilemmas();
 </script>
 
+<script type="text/x-handlebars-template" id="dilemma-index-template">
+  <tr>
+    <td><a href="/dilemmas/{{dilemma_id}}">{{dilemma_name}}</a></td>
+    <td>{{dilemma_deadline}}</td>
+    <td>
+      {{#each tags}}
+        <a href="/tags/{{tag_id}}">{{tag_name}}</a>
+      {{/each}}
+    </td>
+    <td>
+      <a rel='nofollow' data-method='delete' href='/dilemmas/{{dilemma_id}}'>delete</a>
+    </td>
+  </tr>
+</script>
+
