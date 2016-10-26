@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require handlebars-v4.0.5
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks

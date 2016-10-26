@@ -47,6 +47,27 @@
   </table>
 </div>  <!-- comment_table -->
 
+<div id="post_comment_table"></div>
+
 <script type="text/javascript">
   getAndDisplayComments();
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+<script type="text/x-handlebars-template" id="test-template">
+  <div class="test">
+    <table>
+      <tr>
+        <th>header 1</th>
+        <th>header 2</th>
+        <th>header 3</th>
+      </tr>
+      <tr>
+        <td>{{id}}</td>
+        <td>{{email}}</td>
+        <td>{{content}}</td>
+      </tr>
+    </table>
+  </div> <!-- test -->
 </script>

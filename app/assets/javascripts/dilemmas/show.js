@@ -63,6 +63,12 @@ function addComment(){
       success : function(data) {
         var comObj = new Comment(data.id, data.content, data.commenter, data.dilemma_id)
         $('#comment_create_row').before(commentHtml(comObj))
+        // Handlebars practice
+        // var source = $("#test-template").html();
+        // var template = Handlebars.compile(source);
+        // var context = {id: comObj.id, email: comObj.commenter.email, content: comObj.content};
+        // var html = template(context);
+        // $('#post_comment_table').append(html);
       }, 
       error : function(data, error, message) {
         alert(message);
