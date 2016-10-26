@@ -37,7 +37,6 @@ function dilemmaIndexDataToHtml(data){
       }
     }
   }
-  debugger;
   return template(context);
 }
 

@@ -7,3 +7,27 @@
 <script type="text/javascript">
   makeMainTagInstance();
 </script>
+
+<script type="text/x-handlebars-template" id="tag-show-template">
+  <h3>{{tag_name}}</h3>
+  <table>
+    <tbody>
+      <tr>
+        <th>dilemma</th>
+        <th>deadline</th>
+        <th>tags</th>
+      </tr>
+      {{#each dilemmas}}
+        <tr>
+          <td><a href="/dilemmas/{{dilemma_id}}">{{dilemma_name}}</a></td>
+          <td>{{dilemma_deadline}}</td>
+          <td>
+            {{#each dilemmas_tags}}
+              <a href="/tags/{{dilemma_tags_id}}">{{dilemma_tags_name}}</a>
+            {{/each}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</script>
