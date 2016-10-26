@@ -15,7 +15,7 @@ function getAndDisplayComments(){
   var dilemma_id = $('#comment_table').attr('data-dilemma-id');
   $.get("/dilemmas/" + dilemma_id + ".json", function(data){
     buildAllComments(data.comments);
-    $('#comment_header_row').after(thisDilemmasCommentsHtml(dilemma_id));
+    thisDilemmasCommentsHtml(dilemma_id);
   });
 }
 
@@ -26,18 +26,19 @@ function buildAllComments(comments){
 }
 
 function thisDilemmasCommentsHtml(this_dilemmas_id){
-  var html = "";
   for (var count = 0; count < Comment.allInstances.length; count++){
     var comment = Comment.allInstances[count];
     if (comment.dilemma_id == this_dilemmas_id){
-      html += "<tr><td>" + comment.commenter.email + "</td><td>" + comment.content;
+      var this_id = false;
+      debugger;
       if (author_id === current_user_id) {
-        html += " <a rel='nofollow' data-method='delete' href='/comments/" + comment.id + "'>delete</a>"
+        this_id = comment.id;
       }
-      html += "</td></tr>";
+      var template = Handlebars.compile($("#comment-template").html());
+      var html = template({email: comment.commenter.email, content: comment.content, id: this_id});
+      $('#comment_header_row').after(html);
     }
   }
-  return html;
 }
 
 function commentHtml(comment){
@@ -61,14 +62,11 @@ function addComment(){
       "datatype" : "json",
       // randomly switching back and forth from dataType to datatype
       success : function(data) {
-        var comObj = new Comment(data.id, data.content, data.commenter, data.dilemma_id)
-        $('#comment_create_row').before(commentHtml(comObj))
-        // Handlebars practice
-        // var source = $("#test-template").html();
-        // var template = Handlebars.compile(source);
-        // var context = {id: comObj.id, email: comObj.commenter.email, content: comObj.content};
-        // var html = template(context);
-        // $('#post_comment_table').append(html);
+        var comObj = new Comment(data.id, data.content, data.commenter, data.dilemma_id);
+        // $('#comment_create_row').before(commentHtml(comObj))
+        var template = Handlebars.compile($("#comment-template").html());
+        var html = template({email: comObj.commenter.email, content: comObj.content});
+        $('#comment_create_row').before(html);
       }, 
       error : function(data, error, message) {
         alert(message);

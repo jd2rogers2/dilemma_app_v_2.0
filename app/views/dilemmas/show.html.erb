@@ -31,8 +31,8 @@
       <th>user</th>
       <th>comment</th>
     </tr>
-    <!-- js adds old comments here -->
-    <!-- js adds new comments here -->
+      <!-- js adds old comments here -->
+      <!-- js adds new comments here -->
     <tr id="comment_create_row">
       <td></td>
       <td>
@@ -47,27 +47,18 @@
   </table>
 </div>  <!-- comment_table -->
 
-<div id="post_comment_table"></div>
-
 <script type="text/javascript">
   getAndDisplayComments();
 </script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 
-<script type="text/x-handlebars-template" id="test-template">
-  <div class="test">
-    <table>
-      <tr>
-        <th>header 1</th>
-        <th>header 2</th>
-        <th>header 3</th>
-      </tr>
-      <tr>
-        <td>{{id}}</td>
-        <td>{{email}}</td>
-        <td>{{content}}</td>
-      </tr>
-    </table>
-  </div> <!-- test -->
+<script type="text/x-handlebars-template" id="comment-template">
+  <tr>
+    <td>{{email}}</td>
+    <td>{{content}}</td>
+    if ({{id}}) {
+      <td><a rel='nofollow' data-method='delete' href="/comments/".concat({{id}})>delete</a></td>
+    }
+  </tr>
 </script>
