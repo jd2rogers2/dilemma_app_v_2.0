@@ -33,7 +33,7 @@ class DilemmasController < ApplicationController
   end
 
   def index
-    @dilemmas = Dilemma.all
+    @dilemmas = current_user.dilemmas
     respond_to do |format|
       # format.json {render json: @dilemmas.to_json(include: [:tags, :comments, options: {include: :factors}])}
       format.json {render json: @dilemmas}
