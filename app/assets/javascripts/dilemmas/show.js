@@ -53,10 +53,9 @@ function addComment(){
     var current_user_id = $('#comment_table').attr('data-current-user-id');
     var new_comment = {"comment" : {"content" : content, "dilemma_id" : dilemma_id, "commenter_id" : current_user_id}};
     $.ajax({
-      "url" : "/comments",
+      "url" : "/comments.json",
       "type" : "POST",
       "data" : new_comment,
-      "datatype" : "json",
       // randomly switching back and forth from dataType to datatype
       success : function(data) {
         var comObj = new Comment(data.id, data.content, data.commenter, data.dilemma_id);
@@ -71,6 +70,14 @@ function addComment(){
   });
 }
 
+function showComment(){
+  $('#comment_content').keydown(function(){
+    var content = $('textarea').val();
+    $('#comment_text').html(content);
+  })
+}
+
 $(document).ready(function(){
   addComment();
+  showComment();
 });

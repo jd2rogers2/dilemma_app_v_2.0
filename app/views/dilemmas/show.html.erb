@@ -25,6 +25,8 @@
 <br>
 <br>
 
+<div id="comment_text"></div>
+
 <div id="comment_table" data-dilemma-id="<%= @dilemma.id %>" data-author-id="<%= @dilemma.author.id %>" data-current-user-id="<%= current_user.id %>">
   <table>
     <tr id="comment_header_row">
@@ -33,6 +35,7 @@
     </tr>
       <!-- js adds old comments here -->
       <!-- js adds new comments here -->
+
     <tr id="comment_create_row">
       <td></td>
       <td>
