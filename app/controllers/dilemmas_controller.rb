@@ -27,14 +27,16 @@ class DilemmasController < ApplicationController
     end
     respond_to do |format|
       format.html {render :show}
-      format.json {render json: @dilemma.to_json(include: [:tags, comments: {include: :commenter}, options: {include: :factors}])}
+      # format.json {render json: @dilemma.to_json(include: [:tags, comments: {include: :commenter}, options: {include: :factors}])}
+      format.json {render json: @dilemma}
     end
   end
 
   def index
     @dilemmas = Dilemma.all
     respond_to do |format|
-      format.json {render json: @dilemmas.to_json(include: [:tags, :comments, options: {include: :factors}])}
+      # format.json {render json: @dilemmas.to_json(include: [:tags, :comments, options: {include: :factors}])}
+      format.json {render json: @dilemmas}
       format.html {render :index}
     end
   end

@@ -52,11 +52,9 @@ function addComment(){
     var content = $('textarea').val();
     var current_user_id = $('#comment_table').attr('data-current-user-id');
     var new_comment = {"comment" : {"content" : content, "dilemma_id" : dilemma_id, "commenter_id" : current_user_id}};
-    $.ajax({
-      "url" : "/comments.json",
-      "type" : "POST",
+    $.post({
+      "url" : "/comments",
       "data" : new_comment,
-      // randomly switching back and forth from dataType to datatype
       success : function(data) {
         var comObj = new Comment(data.id, data.content, data.commenter, data.dilemma_id);
         var template = Handlebars.compile($("#comment-template").html());

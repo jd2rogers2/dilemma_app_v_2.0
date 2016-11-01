@@ -8,7 +8,8 @@ class TagsController < ApplicationController
     @tag = Tag.create(tag_params)
     # redirect_to tag_path(@tag)
     respond_to do |format|
-      format.json {render json: @tag.to_json(include: [dilemmas: {include: :tags}])}
+      # format.json {render json: @tag.to_json(include: [dilemmas: {include: :tags}])}
+      format.json {render json: @tag}
       # format.html {render :show}
     end
   end
@@ -26,7 +27,8 @@ class TagsController < ApplicationController
   def show
     set_tag
     respond_to do |format|
-      format.json {render json: @tag.to_json(include: [dilemmas: {include: :tags}])}
+      # format.json {render json: @tag.to_json(include: [dilemmas: {include: :tags}])}
+      format.json {render json: @tag}
       format.html {render :show}
     end
   end
@@ -35,7 +37,8 @@ class TagsController < ApplicationController
     @tag = Tag.new
     @tags = Tag.all
     respond_to do |format|
-      format.json {render json: @tags.to_json(include: :dilemmas)}
+      # format.json {render json: @tags.to_json(include: :dilemmas)}
+      format.json {render json: @tags}
       format.html {render :index}
     end
   end

@@ -5,7 +5,8 @@ class CommentsController < ApplicationController
     # redirect_to comment_path(@comment)
     respond_to do |format|
       # format.html {render :show}
-      format.json {render json: @comment.to_json(include: [:commenter])}
+      # format.json {render json: @comment.to_json(include: [:commenter])}
+      format.json {render json: @comment}
     end
   end
 
@@ -19,7 +20,8 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by(id: params[:id])
     respond_to do |format|
       format.html {render :show}
-      format.json {render json: @comment.to_json(include: [:commenter])}
+      # format.json {render json: @comment.to_json(include: [:commenter])}
+      format.json {render json: @comment}
     end
   end
 
